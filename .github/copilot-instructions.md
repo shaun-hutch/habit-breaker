@@ -48,3 +48,15 @@ The frontend will have basic unit tests covering the components and services. Fo
 ## Other info
 
 If there are other questions which need addressing in the plan phase, or other parts in time, feel more than free to ask me. When I answer a question, update this file with the answer so that it can be referred to later on.
+
+## Answered Questions
+
+| Topic | Decision |
+|---|---|
+| Ports | App container on **80** (ASP.NET serves both API and Vue SPA static files), DB on **1433** |
+| Meal detail | Free-text description **+** a Healthy / Unhealthy rating per meal entry |
+| Offline conflict | **Local device data wins** — client sends full day state on sync, overwrites server |
+| Push notifications | **User-configurable** reminder time (stored per user, sent via VAPID) |
+| Habit duration | Configurable input on onboarding UI, **default 66 days** |
+| Auth | **Email/password only** via .NET Identity + JWT (no OAuth) |
+| Containers | **2 containers**: `db` (SQL Server 2022) and `app` (multi-stage: Node builds Vue → dotnet publishes API → runtime image serves both via `UseStaticFiles` + SPA fallback) |
