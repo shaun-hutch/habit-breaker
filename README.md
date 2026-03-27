@@ -176,16 +176,16 @@ docker-compose up -d db
 
 SQL Server will be available at `localhost:1433` with the SA password from your `.env` file.
 
-The API will apply EF migrations automatically on startup, creating all tables and seeding initial data (the "Better Eating" habit).
+The API applies EF migrations automatically on startup, creating all tables and seeding initial data (the "Better Eating" habit). No manual schema setup is required.
 
-**Alternatively**, if you'd rather run the schema script manually (e.g. against an existing SQL Server instance):
+**Alternatively**, if you'd rather apply the schema manually against an existing SQL Server instance (e.g. bypassing migrations):
 
 ```bash
 # Using sqlcmd (installed with SQL Server tools)
 sqlcmd -S localhost,1433 -U sa -P 'YourStr0ng!Password' -i src/database/init.sql -C
 ```
 
-The script (`src/database/init.sql`) creates the `HabitBreaker` database and all tables idempotently — safe to run multiple times.
+The script (`src/database/init.sql`) creates the `HabitBreaker` database and all tables — it is a reference/backup and is not executed automatically by the container.
 
 ### Reset the development database
 

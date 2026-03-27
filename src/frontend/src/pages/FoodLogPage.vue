@@ -84,10 +84,13 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import AppShell from '@/components/AppShell.vue'
 import { useFoodLogStore } from '@/stores/foodLog'
 import { useHabitStore } from '@/stores/habit'
 import { enqueue } from '@/services/offlineQueue'
+
+const router = useRouter()
 
 const foodLog = useFoodLogStore()
 const habits = useHabitStore()
@@ -159,6 +162,9 @@ async function save() {
       await foodLog.upsert(activeHabit.value.id, todayStr, mealEntries)
       snackMsg.value = "Today's log saved!"
       snackColor.value = 'success'
+      snack.value = true
+      setTimeout(() => router.push('/dashboard'), 1200)
+      return
     }
     snack.value = true
   } catch {

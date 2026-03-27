@@ -1,0 +1,35 @@
+# Ensure consistent LF line endings in the repository.
+# This prevents Windows git clients from converting files to CRLF,
+# which would break shell scripts and files copied into Linux containers.
+
+* text=auto eol=lf
+
+# Explicitly LF — these must never be CRLF inside a Linux container
+Dockerfile          text eol=lf
+*.sh                text eol=lf
+*.sql               text eol=lf
+*.yml               text eol=lf
+*.yaml              text eol=lf
+*.json              text eol=lf
+*.ts                text eol=lf
+*.vue               text eol=lf
+*.cs                text eol=lf
+*.csproj            text eol=lf
+*.sln               text eol=lf
+*.md                text eol=lf
+*.env               text eol=lf
+*.env.example       text eol=lf
+*.html              text eol=lf
+*.css               text eol=lf
+
+# Binary — never modify
+*.png               binary
+*.jpg               binary
+*.jpeg              binary
+*.gif               binary
+*.webp              binary
+*.ico               binary
+*.woff              binary
+*.woff2             binary
+*.ttf               binary
+*.eot               binary

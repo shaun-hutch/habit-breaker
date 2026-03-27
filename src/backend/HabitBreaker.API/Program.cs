@@ -92,8 +92,7 @@ builder.Services.AddScoped<IUserHabitRepository, UserHabitRepository>();
 builder.Services.AddScoped<PushReminderJob>();
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
@@ -109,8 +108,7 @@ app.UseMiddleware<SecurityHeadersMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
 }
 
 app.UseCors("DefaultPolicy");

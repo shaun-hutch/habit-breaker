@@ -23,6 +23,7 @@ public class UserHabitRepository(ApplicationDbContext db) : IUserHabitRepository
     {
         db.UserHabits.Add(userHabit);
         await db.SaveChangesAsync(ct);
+        await db.Entry(userHabit).Reference(uh => uh.Habit).LoadAsync(ct);
         return userHabit;
     }
 }

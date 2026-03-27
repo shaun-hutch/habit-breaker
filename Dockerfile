@@ -19,7 +19,7 @@ COPY src/backend/HabitBreaker.Tests/HabitBreaker.Tests.csproj ./HabitBreaker.Tes
 RUN dotnet restore
 
 COPY src/backend/ ./
-RUN dotnet publish HabitBreaker.API/HabitBreaker.API.csproj -c Release -o /app/publish --no-restore
+RUN dotnet publish HabitBreaker.API/HabitBreaker.API.csproj -c Release -o /app/publish
 
 # ─── Stage 3: Runtime ─────────────────────────────────────────────────────────
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
